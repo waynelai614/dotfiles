@@ -1,261 +1,343 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-" Vim plugins expect a POSIX-compliant shell
-if &shell !~ '/sh$'
-    set shell=/bin/sh
-endif
-
-Plugin 'ElmCast/elm-vim'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'cfdrake/vim-carthage'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'dag/vim-fish'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'garbas/vim-snipmate'
+" let Vundle manage Vundle
 Plugin 'gmarik/Vundle.vim'
-Plugin 'hecal3/vim-leader-guide'
-Plugin 'honza/vim-snippets'
-Plugin 'jimmay5469/vim-spacemacs'
-Plugin 'jnurmine/Zenburn'
-Plugin 'junegunn/fzf.vim'
-Plugin 'keith/investigate.vim'
-Plugin 'keithbsmiley/swift.vim'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'rust-lang/rust.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'shemerey/vim-peepopen'
-Plugin 'szw/vim-maximizer'
-Plugin 'thirtythreeforty/lessspace.vim'
+Plugin 'vim-scripts/Align'
+Plugin 'mattn/emmet-vim'
+" Plugin 'vim-scripts/jslint.vim'
+" Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'nginx.vim'
+" Plugin 'tir_black'
+" Plugin 'othree/html5.vim'
+" Plugin 'AutoComplPop'
+" for vim-autocomplpop
+Plugin 'L9'
+Plugin 'othree/vim-autocomplpop'
+Plugin 'MarcWeber/vim-addon-mw-utils.git'
+Plugin 'MarcWeber/vim-addon-local-vimrc'
 Plugin 'tomtom/tlib_vim'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-rsi'
-Plugin 'tpope/vim-sensible'
+
+
+Plugin 'nono/vim-handlebars'
 Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'vim-syntastic/syntastic'
+Plugin 'tpope/vim-sleuth'
+Plugin 'kchmck/vim-coffee-script'
+" Plugin 'othree/vim-coffee-script'
+" Plugin 'othree/coffee-check.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/syntastic'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'powerline/powerline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'yonaichin/ctrlp.vim'
+Plugin 'terryma/vim-expand-region'
+Plugin 't9md/vim-smalls'
+Plugin 'EasyMotion'
+" Plugin 'mtscout6/vim-cjsx'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+Plugin 'dyng/ctrlsf.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'othree/csscomplete.vim'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'wincent/ferret'
+Plugin 'othree/yajs.vim'
+Plugin 'joshdick/onedark.vim'
+Plugin 'sheerun/vim-polyglot'
+Plugin 'ap/vim-css-color'
+Plugin 'mhartington/oceanic-next'
 
-let g:ctrlp_map = ''
-let g:rust_recommended_style = 1
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
 
-call vundle#end()
-filetype plugin indent on
+filetype on
+filetype plugin on
 
-" ==============================
-" Settings
-" ==============================
+"set t_Co=256
+set bs=2
+set cindent
+set history=50
+set modeline
+set modelines=2
+set nowrap
+set number
+"set runtimepath=~/.vim,$VIMRUNTIME
+set title
+set wildmenu
 
-" Autocompletion
-set wildignore+=*.o,*.obj,*.pyc,*.DS_Store,*.db,*.git
-
-if exists('+wildignorecase')
-    set wildignorecase
-endif
-
-" Backup
-set nobackup
-set noswapfile
-set nowritebackup
-set undodir=/tmp
-set undofile
-
-" Buffers
-set hidden
-
-" Display
-set rulerformat=%l:%c
-set shortmess=atI
-set showcmd
-set titlestring=%f title
-
-" Editing
-set nofoldenable
-set pastetoggle=<f2>
-set shiftwidth=4
-set tabstop=4
-set mouse=a
-
-" Search
-set gdefault
+" Highlight search keywords.
 set hlsearch
-set ignorecase
-set smartcase
+set incsearch
 
-" Mac options
-if has('mac')
-    function! s:PBCopy()
-        let old = @"
-        normal! gvy
-        call system('pbcopy', @")
-        let @" = old
-    endfunction
+" Replace tab with 4 spaces.
+set expandtab
+set shiftwidth=2
+set softtabstop=2
 
-    vnoremap <silent> Y :<c-u>call<SID>PBCopy()<cr>
-endif
+" Auto-complete using Ctrl+K.
+" set dictionary-=~/.vim/funclist.txt
+" set complete-=k complete+=k
 
-" GUI options
-if has('gui_running')
-    set columns=101 lines=38 " Default window size
-    set guicursor=a:blinkon0 " Disable blinking cursor
-    set guifont=Menlo\ Regular:h16
-    set guioptions=hae
-endif
+" Syntax highlight.
+syntax on
+hi Comment term=standout cterm=bold ctermfg=0
+highlight Search term=reverse ctermbg=3 ctermfg=0
+highlight Normal ctermbg=black ctermfg=white
+highlight Folded ctermbg=black ctermfg=darkcyan
+hi Cursor ctermbg=Gray ctermfg=Blue
+highlight clear SpellBad
+highlight SpellBad term=underline cterm=underline ctermfg=red
 
-if has('gui_macvim')
-    set macmeta
-endif
+" Set status line.
+set ls=2
+set statusline=%<%f\ %m%=\ %h%r\ %-19([%p%%]\ %3l,%02c%03V%)%y
+highlight StatusLine term=bold,reverse cterm=bold,reverse
 
-silent! colorscheme zenburn
+" Set cursor line.
+set cursorline
+set cursorcolumn
+hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 
-" Syntax
-if !&diff
-    syntax on
-endif
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+hi CursorColumn cterm=NONE ctermbg=darkred ctermbg=darkgray guibg=darkcyan
+" match OverLength /\%81v.\+/
 
-highlight Normal ctermbg=black guibg=#1f1f1f
+" Always use utf-8 encoding.
+set fileencoding=utf-8
+set fileencodings=utf-8,big5,euc-jp,gbk,euc-kr,utf-bom,iso8859-1
+"set encoding=utf-8
+set tenc=utf-8
 
-" ==============================
-" Macros
-" ==============================
+" Set tab settings.
+highlight TabLine ctermbg=blue
+highlight TabLineFill ctermbg=green
+highlight TabLineSel ctermbg=red
 
-" Typos
-iabbrev !+ !=
-iabbrev ~? ~/
 
-" Escape with fd
-cnoremap fd <c-c>
-inoremap fd <esc>
-vnoremap fd <esc>
+"" keypad
+"" http://vim.wikia.com/wiki/PuTTY_numeric_keypad_mappings
+imap <Esc>Oq 1
+imap <Esc>Or 2
+imap <Esc>Os 3
+imap <Esc>Ot 4
+imap <Esc>Ou 5
+imap <Esc>Ov 6
+imap <Esc>Ow 7
+imap <Esc>Ox 8
+imap <Esc>Oy 9
+imap <Esc>Op 0
+imap <Esc>On .
+imap <Esc>OQ /
+imap <Esc>OR *
+imap <Esc>Ol +
+imap <Esc>OS -
 
-" Enter cmdline mode with ;
-noremap ; :
-noremap \ ;
+" Set F1-F12 shortcut keys.
+" NERDTree
+nnoremap <silent> <C-n> :NERDTreeMirrorToggle<CR>
+let NERDTreeShowBookmarks  = 0
+let g:nerdtree_tabs_focus_on_files = 1
 
-" Paste yanked text (as opposed to cut text)
-noremap gp "0p
-noremap gP "0P
+let g:Powerline_symbols = 'fancy'
+let g:airline_powerline_fonts = 1
+" let g:airline_theme='luna'
+" let g:AirlineTheme='wombat'
 
-" Make Y to y as D is to d and C is to c
-nnoremap Y y$
+set laststatus=2 " Always display the statusline in all windows
+set showtabline=2 " Always display the tabline, even if there is only one tab
+set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusli
 
-let mapleader = "\<space>"
-nnoremap <c-w>D :lcd %:p:h<cr>
-nnoremap j gj
-nnoremap k gk
+" Activate scss.vim
+au BufRead,BufNewFile *.scss set filetype=scss
+" Removing tailing spaces.
+au! BufWrite * mark ' | silent! %s/\s\+$// | norm ''
+" Replace tab to spaces.
+au BufWrite * :retab
+" Set auto commands.
+autocmd BufReadPost *
+\ if line("'\"") > 0 && line ("'\"") <= line("$") |
+\   exe "normal g'\"" |
+\ endif
+" Make vim setting works immediately.
+autocmd! BufWritePost .vimrc source %
+" Output CSS files once *.scss saves.
+" autocmd BufWritePost *.scss !compass_lite <afile> <afile>:r.css
 
-" Shortcut for switching to/from header files.
-function! s:AlternateFile(...)
-    for extension in a:000
-        let path = expand('%:p:r').'.'.extension
-        if filereadable(path) || bufexists(path)
-            execute 'e'.fnameescape(path)
-            return
-        endif
-    endfor
+" Create a template file.
+" autocmd BufNewFile *.html so ~/.vim/html.txt
+" autocmd BufNewFile *.html exe "1," . 10 . "g/name=\"created\" content=\".*\"/s//name=\"created\" content=\"" .strftime("%Y-%m-%d"). "\""
+" autocmd Bufwritepre,filewritepre *.c execute "normal ma"
+" autocmd BufWritePre,FileWritePre *.html exe "1," . 10 . "g/name=\"modified\" content=\".*\"/s//name=\"modified\" content=\"" .strftime("%c"). "\""
+" autocmd bufwritepost,filewritepost *.c execute "normal `a"
 
-    echohl ErrorMsg
-    let ext = (a:0 > 1) ? '{'.join(a:000, ',').'}' : a:1
-    echo expand('%:p:r').'.'.ext.' not found.'
-    echohl None
+" Special File Types
+au BufRead,BufNewFile *.less set ft=less
+au BufRead,BufNewFile *.tpl set ft=html
+au BufRead,BufNewFile *.xsl set ft=html
+au BufRead,BufNewFile *.json set syntax=json
+au BufRead,BufNewFile *.hbs set syntax=handlebars
+au BufRead,BufNewFile *.n3  set ft=n3
+au BufRead,BufNewFile /usr/local/etc/nginx/* set ft=nginx
+au BufRead,BufNewFile /etc/nginx/* set ft=nginx
+au BufNewFile,BufRead *.gradle setf groovy
+" au BufRead,BufNewFile *.coffee set ft=coffee
+
+
+
+" tab to indent
+nmap <tab> V>
+vmap <tab> >gv
+nmap <s-tab> V<
+vmap <s-tab> <gv
+
+set autochdir
+"auto mkdir -p when write to file
+" ref: http://stackoverflow.com/questions/547719/is-there-a-way-to-make-mv-create-the-directory-to-be-moved-to-if-it-doesnt-exis
+function! WriteCreatingDirs()
+    execute ':silent !mkdir -p %:h'
+    write
 endfunction
+command! W call WriteCreatingDirs()
 
-" * and # should search for selected text when used in visual mode.
-function! s:VisualSearch()
-    let old = @"
-    normal! gvy
-    let @/ = '\V'.substitute(escape(@", '\'), '\n', '\\n', 'g')
-    let @" = old
-endfunction
+"https://github.com/othree/javascript-libraries-syntax.vim
+"let g:used_javascript_libs = 'underscore,backbone,jquery,angularjs,requirejs'
+"let g:syntastic_html_checkers = []
+"autocmd BufReadPre *.js let b:javascript_lib_use_jquery = 1
+"autocmd BufReadPre *.js let b:javascript_lib_use_underscore = 1
+"autocmd BufReadPre *.js let b:javascript_lib_use_backbone = 1
+"autocmd BufReadPre *.js let b:javascript_lib_use_prelude = 0
+"autocmd BufReadPre *.js let b:javascript_lib_use_angularjs = 1
+"
+"
+" Autocomplpop: {{{
+"" acp options
+" let g:acp_enableAtStartup = 1
+" " let g:acp_mappingDriven = 1
+" let g:acp_completeOption = '.,w,b,u,t,i,k'
+" " let g:acp_behaviorSnipmateLength = 0
+"
+" let g:acp_behaviorUserDefinedMeets = 'acp#meetsForKeyword'
+" let g:acp_behaviorUserDefinedFunction = 'syntaxcomplete#Complete'
+" }}}
 
-" Shortcut for mimicking <c-l> from Emacs.
-function! s:Redraw()
-    let ln = line('.')
-    let top = line('w0')
-    let bottom = line('w$')
-    let middle = top + (bottom - top) / 2
-    if ln == middle
-        normal! zt
-    elseif ln == top
-        normal! zb
-    else
-        normal! zz
-    end
-endfunction
+"function! Empty(findstart, complWord)
+"  return 0
+"endfunction
+"
+"autocmd FileType javascript set omnifunc=Empty
 
-" Shortcut for mimicking <c-k> from Emacs.
-function! s:KillLine()
-    let [before, after] = s:SplitLineTextAtCursor()
-    if len(after) == 0
-        normal! J
-    else
-        call setline(line('.'), before)
-    endif
-    return ''
-endfunction
 
-function! s:SplitLineTextAtCursor()
-    let text = getline(line('.'))
-    let before = (col('.') > 1) ? text[: col('.') - 2] : ''
-    let after  = text[col('.') - 1 :]
-    return [before, after]
-endfunction
+" Syntastic: {{{
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_javascript_checkers = ['jslint']
+let g:syntastic_javascript_jslint_conf = "--nomen --plusplus --forin --regexp"
+"let g:syntastic_coffee_coffeelint_args = "--csv -f ~/.coffeelint-config.json"
+let g:syntastic_ignore_files = ['\.coffee$', '\.html$', '\.hbs$']
+" }}}
 
-nnoremap <silent> <c-l> :call<SID>Redraw()<cr>
-xnoremap * :<c-u>call<SID>VisualSearch()<cr>/<cr>
-xnoremap # :<c-u>call<SID>VisualSearch()<cr>?<cr>
+nmap <F3>  :set nopaste!<CR>
 
-noremap <c-a> <home>
-noremap <c-e> <end>
-noremap + <c-a>
-noremap - <c-x>
-cnoremap <c-k> <c-\>estrpart(getcmdline(), 0, getcmdpos()-1)<cr>
+map <C-h> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+      \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+      \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-" Emacs bindings in insert mode
-inoremap <c-/> <c-o>u
-inoremap <c-k> <c-o>:call<SID>KillLine()<cr>
-inoremap <c-l> <c-o>:call<SID>Redraw()<cr>
-inoremap <expr> <down> pumvisible() ? '<c-n>' : '<c-o>j'
-inoremap <expr> <up> pumvisible() ? '<c-p>' : '<c-o>k'
+"let g:ycm_semantic_triggers =  {
+"  \   'coffee': ['.'],
+"  \ }
 
-" Spacemacs bindings
-let g:spacemacs#excludes = [
-  \ '^ff',
-\ ]
-nnoremap <leader>ff :lcd %:p:h<cr>:e<space>
+"http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
+" let mapleader = "\<Space>"
+"Type <Space>o to open a new file:
+nnoremap <Leader>o :CtrlP<CR>
+"Type <Space>w to save file (lot faster than :w<Enter>):
+nnoremap <Leader>w :w<CR>
 
-" Terminal registers <c-/> as <c-_> https://stackoverflow.com/a/9051932
-imap <c-_> <c-/>
+"Copy & paste to system clipboard with <Space>p and <Space>y:
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
+nmap <Leader><Leader> V
 
-" Visual mode
-xnoremap v <esc>
-xmap s S
+"III. Use region expanding
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
 
-" ==============================
-" Autocommands
-" ==============================
 
-augroup rccommands
-autocmd!
+" map normal-mode 's' for simple search
+map s <Plug>(smalls)
+" if you want to use smalls in visual/operator or both mode.
+omap s <Plug>(smalls)
+xmap s <Plug>(smalls)
 
-autocmd BufRead,BufNewFile *.h,*.m set filetype=objc
-autocmd BufRead,BufNewFile *.json set filetype=javascript
-autocmd BufRead,BufNewFile *.md set filetype=markdown
+let g:EasyMotion_leader_key = ','
 
-autocmd BufRead,BufNewFile *.h nnoremap <buffer> <silent> <leader>fa :call<SID>AlternateFile('c', 'm', 'cpp', 'cc')<cr>
-autocmd BufRead,BufNewFile *.{c\|m\|mm\|cpp\|cc} nnoremap <buffer> <silent> <leader>fa :call<SID>AlternateFile('h')<cr>
-autocmd FileType c,cpp,objc,rust inoremap <buffer> <silent> ;$ <c-o>$;
-autocmd FileType c,cpp,objc,rust inoremap <buffer> ;; ;
-autocmd FileType css,html,objc setlocal nowrap
-autocmd FileType elm,haskell,fish,html,javascript,objc,rust,sh,swift,typescript,vim setlocal softtabstop=4
-autocmd FileType elm,fish,haskell,html,javascript,objc,pyrex,python,ruby,sh,swift,typescript,vim setlocal expandtab
-autocmd FileType elm,fish,haskell,python,pyrex,ruby,sh,scheme setlocal textwidth=80 colorcolumn=81
-autocmd FileType help,vim let&l:keywordprg=':help'
-autocmd FileType javascript,rust,typescript setlocal textwidth=100 colorcolumn=101
-autocmd FileType javascript,typescript setlocal indentexpr=cindent
-autocmd FileType ruby setlocal tabstop=2 shiftwidth=2
-autocmd FileType swift setlocal textwidth=120 colorcolumn=121
 
-augroup END
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+vmap <Leader> k(EasyAlign)
+
+
+"CtrlSF https://github.com/dyng/ctrlsf.vim
+nmap     <C-F>f <Plug>CtrlSFPrompt
+vmap     <C-F>f <Plug>CtrlSFVwordPath
+vmap     <C-F>F <Plug>CtrlSFVwordExec
+nmap     <C-F>n <Plug>CtrlSFCwordPath
+nmap     <C-F>p <Plug>CtrlSFPwordPath
+nnoremap <C-F>o :CtrlSFOpen<CR>
+nnoremap <C-F>t :CtrlSFToggle<CR>
+inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
+
+let g:jsx_ext_required = 0
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
+
+" set theme
+" Note: All options should be set before the colorscheme onedark line in your ~/.vimrc.
+let g:onedark_terminal_italics = 1
+colorscheme onedark
+highlight Comment cterm=italic
+
+" git clone https://github.com/kien/ctrlp.vim.git bundle/ctrlp.vim
+" ctrlp: {{{
+"
+
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+
+let g:ctrlp_show_hidden = 0
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_use_caching = 0
+
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  'node_modules$\|\.git$\|\.meteor$\|\.svn$\|dist$\|\.hg$',
+  \ 'file': '\.DS_Store$\|\.jpg$\|\.png$\|\.jpeg$\|\.gif$\|\.svg$'
+  \ }
+" }}}
+"
+let g:cssColorVimDoNotMessMyUpdatetime = 1
+ " Or if you have Neovim >= 0.1.5
+ if (has("termguicolors"))
+   set termguicolors
+ endif
+
+ " Theme
+ syntax enable
+ set background=dark
+ colorscheme OceanicNext
