@@ -16,12 +16,6 @@ fi
 # Update any existing homebrew recipes
 brew update
 
-# Install oh-my-zsh
-if [ ! -d ~/.oh-my-zsh ]; then
-    echo "Installing oh-my-zsh..."
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-fi
-
 # Check for Python pip
 if test ! $(which pip3); then
     echo "python pip needs to be installed in order to install cider."
@@ -38,3 +32,9 @@ if test ! $(which cider); then
 fi
 
 cider restore
+
+# Install oh-my-zsh
+if [ ! -d ~/.oh-my-zsh ]; then
+    echo "Installing oh-my-zsh..."
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+fi
