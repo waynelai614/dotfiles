@@ -26,11 +26,18 @@ $ sh bootstrap.sh # will run `cider restore` in this script
 This will symlink the appropriate files to your home directory. Everything is
 configured and tweaked within `~/.cider`.
 
-## Useful links
-* [How to reinstall macOS from macOS Recovery](https://support.apple.com/zh-tw/HT204904)
-* [Use ⌥ ← and ⌥→ to jump forwards / backwards words in iTerm 2](https://coderwall.com/p/h6yfda/use-and-to-jump-forwards-backwards-words-in-iterm-2-on-os-x)
-* [zsh theme - spaceship-prompt](https://github.com/denysdovhan/spaceship-prompt)
-* [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md)
-* [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md)
-* [Migrating from vim to neovim](https://otaviovaladares.com/2018/09/30/migrating-to-nvim/)
-* [vscode extension - Settings Sync](https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync)
+## Useful Links
+* macOS
+  - [How to reinstall macOS from macOS Recovery](https://support.apple.com/zh-tw/HT204904)
+  - [Apple TV Aerial Screensaver for Mac](https://github.com/JohnCoates/Aerial)
+  - [How to use Hot Corners on Mac](https://www.imore.com/how-use-hot-corners-mac)
+  - [Turn on "three finger drag" for your Force Touch trackpad](https://support.apple.com/zh-hk/HT204609)
+* iTerm2
+  - [Use ⌥ ← and ⌥→ to jump forwards / backwards words in iTerm 2](https://coderwall.com/p/h6yfda/use-and-to-jump-forwards-backwards-words-in-iterm-2-on-os-x)
+* Oh My Zsh
+  - [spaceship-prompt](https://github.com/denysdovhan/spaceship-prompt)
+  - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md)
+  - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md)
+* Editor
+  - [Migrating from vim to neovim](https://otaviovaladares.com/2018/09/30/migrating-to-nvim/)
+  - [Vscode extension - Settings Sync](https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync)
