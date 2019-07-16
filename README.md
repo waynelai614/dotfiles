@@ -33,6 +33,7 @@ configured and tweaked within `~/.cider`.
   - [How to use Hot Corners on Mac](https://www.imore.com/how-use-hot-corners-mac)
   - [Turn on "three finger drag" for your Force Touch trackpad](https://support.apple.com/zh-hk/HT204609)
   - [Custom shortcut for switching input sources in macOS](https://apple.stackexchange.com/a/301458)
+  - [Disable dark mode of specific app](https://superuser.com/a/1418041)
 * iTerm2
   - [Use ⌥ ← and ⌥→ to jump forwards / backwards words in iTerm 2](https://coderwall.com/p/h6yfda/use-and-to-jump-forwards-backwards-words-in-iterm-2-on-os-x)
 * Oh My Zsh
