@@ -40,6 +40,7 @@ configured and tweaked within `~/.cider`.
   - [spaceship-prompt](https://github.com/denysdovhan/spaceship-prompt)
   - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md)
   - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md)
+  - [Oh, My ZSH! with Powerline Fonts. Pretty simple as you deserve!](https://fmacedoo.medium.com/oh-my-zsh-with-powerline-fonts-pretty-simple-as-you-deserve-fbe7f6d23723)
 * Editor
   - [Migrating from vim to neovim](https://otaviovaladares.com/2018/09/30/migrating-to-nvim/)
   - [Vscode extension - Settings Sync](https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync)
